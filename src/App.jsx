@@ -1,6 +1,10 @@
+import React from "react";
 import "./App.css";
 import logo from "./assets/images/logo.svg";
 import Button from "./components/atom/Button";
+
+// TODO: Header buttons to ul with li ?
+// TODO: separate by components (converter, etc.)
 
 function App() {
   return (
@@ -15,11 +19,18 @@ function App() {
           <img src={logo} alt="Uphold Logo" />
         </div>
         <div className="w-[300px]">
-          <Button theme="action" className="float-right">
-            Log in
-          </Button>
+          <Button className="float-right">Log in</Button>
         </div>
       </header>
+      <div className="mt-10">
+        <h1 className="text-4xl font-bold text-gray-900 text-center">
+          Currency Converter
+        </h1>
+        <h3 className="text-xl text-gray-400 text-center max-w-md mx-auto mt-4">
+          Receive competitive and transparent pricing with no hidden spreads.
+          See how we compare.
+        </h3>
+      </div>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import React from "react";
 import PropTypes from "prop-types";
 
 import { tv } from "tailwind-variants";
@@ -13,20 +14,24 @@ const button = tv({
   },
 });
 
-const Button = (props) => {
+function Button({ theme, className, children }) {
   return (
-    <button
-      className={twMerge(button({ theme: props.theme }), props.className)}
-    >
-      {props.children}
+    <button type="submit" className={twMerge(button({ theme }), className)}>
+      {children}
     </button>
   );
-};
+}
 
 Button.propTypes = {
   theme: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node,
+};
+
+Button.defaultProps = {
+  theme: "action",
+  className: "",
+  children: "",
 };
 
 export default Button;
