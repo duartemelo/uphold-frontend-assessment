@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { tv } from "tailwind-variants";
 import { twMerge } from "tailwind-merge";
 
-const button = tv({
+const buttonVariants = tv({
   base: "font-semibold",
   variants: {
     theme: {
@@ -14,9 +14,21 @@ const button = tv({
   },
 });
 
-function Button({ theme, className, children }) {
+function Button({ theme, className, href, onClick, children }) {
+  if (theme === "text") {
+    return (
+      <a href={href} className={twMerge(buttonVariants({ theme }), className)}>
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <button type="submit" className={twMerge(button({ theme }), className)}>
+    <button
+      type="submit"
+      className={twMerge(buttonVariants({ theme }), className)}
+      onClick={onClick}
+    >
       {children}
     </button>
   );
@@ -25,12 +37,16 @@ function Button({ theme, className, children }) {
 Button.propTypes = {
   theme: PropTypes.string,
   className: PropTypes.string,
+  href: PropTypes.string,
+  onClick: PropTypes.func,
   children: PropTypes.node,
 };
 
 Button.defaultProps = {
   theme: "action",
   className: "",
+  href: "#",
+  onClick: () => {},
   children: "",
 };
 
