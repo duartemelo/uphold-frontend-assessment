@@ -1,3 +1,5 @@
+/* TODO: root variable colors */
+
 .react-select__control {
   height: 40px;
   cursor: pointer !important;
@@ -32,4 +34,20 @@
 
 .react-select__option:hover {
   background-color: #e5e7eb !important;
+}
+
+.react-select__menu-list::-webkit-scrollbar-track {
+  background: none !important;
+  border-radius: 4px !important;
+}
+
+.react-select__menu-list::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background: #0000 !important;
+  border-radius: 4px;
+}
+.react-select__menu-list::-webkit-scrollbar-thumb {
+  background: #e5e7eb;
+  border-radius: 4px;
 }
