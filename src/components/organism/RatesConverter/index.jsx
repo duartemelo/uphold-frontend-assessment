@@ -37,13 +37,7 @@ function RatesConverter() {
       .finally(() => {
         setRatesLoading(false);
       });
-  }, [
-    selectedCurrency.value,
-    flags,
-    setRatesLoading,
-    setRates,
-    getRatesForAvailableCurrencies,
-  ]);
+  }, [selectedCurrency.value, getRatesForAvailableCurrencies]);
 
   useEffect(() => {
     if (debouncedValue !== "" && debouncedValue !== "0") {
