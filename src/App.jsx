@@ -7,8 +7,6 @@ import Separator from "./components/atom/Separator";
 import Text from "./components/atom/Text";
 import Footer from "./components/organism/Footer";
 
-// TODO: separate by components (converter, etc.)
-
 function App() {
   return (
     <div>
@@ -43,7 +41,7 @@ function App() {
           See how we compare.
         </Text>
         <RatesConverter />
-        <Separator />
+        <Separator className="max-w-[1500px]" />
         <Footer />
       </div>
     </div>

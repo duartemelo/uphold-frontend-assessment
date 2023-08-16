@@ -7,13 +7,13 @@ import googleLogo from "../../../assets/images/playstore.svg";
 
 function Footer() {
   return (
-    <div className="flex max-w-[1500px] mx-auto justify-between my-16">
-      <div className="">
+    <div className="flex max-w-[1500px] mx-auto justify-between my-16 px-8">
+      <div>
         <div className="h-[40px]">
           <img src={logo} alt="Uphold Logo" className="h-full" />
         </div>
       </div>
-      <div className="">
+      <div>
         <div className="h-[40px] flex items-center">
           <Text as="h5" className="font-bold text-gray-600">
             Products
@@ -32,7 +32,7 @@ function Footer() {
           </Button>
         </ul>
       </div>
-      <div className="">
+      <div>
         <div className="h-[40px] flex items-center">
           <Text as="h5" className="font-bold text-gray-600">
             Company
@@ -53,7 +53,7 @@ function Footer() {
           </Button>
         </ul>
       </div>
-      <div className="">
+      <div>
         <div className="h-[40px] flex items-center">
           <Text as="h5" className="font-bold text-gray-600">
             Help
@@ -77,7 +77,7 @@ function Footer() {
           </Button>
         </ul>
       </div>
-      <div className="">
+      <div>
         <div className="h-[40px] flex items-center">
           <Text as="h5" className="font-bold text-gray-600">
             Social
@@ -98,8 +98,7 @@ function Footer() {
           </Button>
         </ul>
       </div>
-      {/* TODO: */}
-      <div className="">
+      <div>
         <div className="h-[40px] flex justify-between items-center">
           <img src={appleLogo} alt="Apple Logo" className="h-[25px]" />
           <img src={googleLogo} alt="Google Play Logo" className="h-[25px]" />

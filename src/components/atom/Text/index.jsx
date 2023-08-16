@@ -27,13 +27,12 @@ function Text({ as, className, children }) {
 Text.propTypes = {
   as: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.string,
+  children: PropTypes.string.isRequired,
 };
 
 Text.defaultProps = {
   as: "p",
   className: "",
-  children: "",
 };
 
 export default Text;
