@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Select from "react-select";
-import "./CustomSelect.css";
+import "./styles.css";
 
 import { twMerge } from "tailwind-merge";
 
@@ -15,8 +15,6 @@ function CustomSelect({ options, className, value, onChange }) {
       classNamePrefix="react-select"
       isSearchable={false}
       isMulti={false}
-      // isLoading
-      // menuIsOpen
     />
   );
 }

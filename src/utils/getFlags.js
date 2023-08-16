@@ -1,8 +1,4 @@
-const context = require.context(
-  "../../../assets/images/currencies",
-  true,
-  /.png$/
-);
+const context = require.context("../assets/images/currencies", true, /.png$/);
 
 const obj = {};
 context.keys().forEach((key) => {

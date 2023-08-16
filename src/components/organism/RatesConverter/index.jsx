@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CustomSelect from "../../molecule/CustomSelect";
 import Option from "../../molecule/CustomSelect/components/Option";
 import RatesContainer from "../RatesContainer";
-// import getRates from "../../../apis/sdk";
-import flags from "./getFlags";
+import getRatesForAvailableCurrencies from "../../../apis/sdk";
+import flags from "../../../utils/getFlags";
+import formatCurrency from "../../../utils/currencyValues";
 
 const options = Object.keys(flags).map((currency) => ({
   value: currency,
@@ -18,20 +19,54 @@ function RatesConverter() {
     defaultSelectedCurrency
   );
 
-  // const [loading, setLoading] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const [debouncedValue, setDebouncedValue] = useState("");
+  const [rates, setRates] = useState([]);
+  const [shownRates, setShownRates] = useState([]);
+  const [ratesLoading, setRatesLoading] = useState(false);
 
-  // useEffect(() => {
-  //   getRates("EUR").then((response) => {
-  //     console.log(response);
-  //   });
-  //   setLoading(true);
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //   }, 2000);
-  // }, []);
+  let debounceTimer;
 
-  const handleSelectValue = (value) => {
+  useEffect(() => {
+    setRatesLoading(true);
+    getRatesForAvailableCurrencies(selectedCurrency.value, Object.keys(flags))
+      .then((response) => {
+        setRates(response);
+      })
+      .catch(() => {})
+      .finally(() => {
+        setRatesLoading(false);
+      });
+  }, [
+    selectedCurrency.value,
+    flags,
+    setRatesLoading,
+    setRates,
+    getRatesForAvailableCurrencies,
+  ]);
+
+  useEffect(() => {
+    if (debouncedValue !== "" && debouncedValue !== "0") {
+      const updatedShownRates = rates.map((rate) => ({
+        ...rate,
+        ask: formatCurrency(rate.ask * parseFloat(debouncedValue)),
+      }));
+      setShownRates(updatedShownRates);
+    } else {
+      setShownRates([]);
+    }
+  }, [debouncedValue, rates, setShownRates]);
+
+  const handleSelectCurrency = (value) => {
     setSelectedCurrency(value);
+  };
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      setDebouncedValue(event.target.value);
+    }, 1000);
   };
 
   return (
@@ -41,15 +76,17 @@ function RatesConverter() {
           type="number"
           className="text-4xl placeholder:text-gray-400 text-gray-700 bg-gray-100 p-4 rounded-lg block"
           placeholder={0}
+          value={inputValue}
+          onChange={handleInputChange}
         />
         <CustomSelect
           className="mx-2"
           options={options}
           value={selectedCurrency}
-          onChange={handleSelectValue}
+          onChange={handleSelectCurrency}
         />
       </div>
-      <RatesContainer />
+      <RatesContainer isLoading={ratesLoading} rates={shownRates} />
     </>
   );
 }

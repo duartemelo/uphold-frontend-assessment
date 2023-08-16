@@ -4,7 +4,7 @@ import Flag from "../../../../atom/Flag";
 
 function Option({ imageSrc, label }) {
   return (
-    <div className="rounded-full flex justify-center items-center gap-2">
+    <div className="rounded-full">
       <Flag imageSrc={imageSrc} label={label} />
     </div>
   );

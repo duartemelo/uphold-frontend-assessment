@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 
 function Spinner({ className }) {
   return (
-    <div>
+    <div className="w-min">
       <svg
         aria-hidden="true"
         className={twMerge(

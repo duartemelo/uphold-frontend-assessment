@@ -12,4 +12,21 @@ const getRates = async (pair) => {
   return rates;
 };
 
-export default getRates;
+const getTargetCurrencyFromPair = (baseCurrency, pair) =>
+  pair.replace(baseCurrency, "").replace("-", "");
+
+const getRatesForAvailableCurrencies = async (
+  currency,
+  availableCurrencies
+) => {
+  const rates = await getRates(currency);
+  const filteredRates = rates.filter(
+    (rate) =>
+      availableCurrencies.includes(
+        getTargetCurrencyFromPair(currency, rate.pair)
+      ) && rate.currency !== currency // only returns pairs like BTCEUR and not EURBTC (if basecurrency is 'EUR')
+  );
+  return filteredRates;
+};
+
+export default getRatesForAvailableCurrencies;
