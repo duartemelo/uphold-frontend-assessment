@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import CustomSelect from "../../molecule/CustomSelect";
 import usd from "../../../assets/images/USD@3x.png";
 import eur from "../../../assets/images/EUR@3x.png";
 import Option from "../../molecule/CustomSelect/components/Option";
 
+const options = [
+  {
+    value: "USD",
+    label: <Option imageSrc={usd} label="USD" />,
+  },
+  { value: "EUR", label: <Option imageSrc={eur} label="EUR" /> },
+];
+
 function RatesConverter() {
+  const [selectedCurrency, setSelectedCurrency] = useState(options[0]);
+
+  const handleSelectValue = (value) => {
+    setSelectedCurrency(value);
+  };
+
   return (
     <>
       <div className="bg-gray-100 w-min rounded-lg mx-auto mt-10 flex items-center">
@@ -15,13 +29,9 @@ function RatesConverter() {
         />
         <CustomSelect
           className="mx-2"
-          options={[
-            {
-              value: "USD",
-              label: <Option imageSrc={usd} label="USD" />,
-            },
-            { value: "EUR", label: <Option imageSrc={eur} label="EUR" /> },
-          ]}
+          options={options}
+          value={selectedCurrency}
+          onChange={handleSelectValue}
         />
       </div>
       <div>

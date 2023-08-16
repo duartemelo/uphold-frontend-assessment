@@ -1,23 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Select from "react-select";
 import "./CustomSelect.css";
 
 import { twMerge } from "tailwind-merge";
 
-function CustomSelect({ options, className }) {
-  const [selectValue, setSelectValue] = useState(options[0]);
-
-  const handleSelectChange = (value) => {
-    setSelectValue(value);
-    // console.log(selectValue);
-  };
-
+function CustomSelect({ options, className, value, onChange }) {
   return (
     <Select
       options={options}
-      value={selectValue}
-      onChange={handleSelectChange}
+      value={value}
+      onChange={onChange}
       className={twMerge("react-select", className)}
       classNamePrefix="react-select"
       isSearchable={false}
@@ -36,10 +29,17 @@ CustomSelect.propTypes = {
     })
   ).isRequired,
   className: PropTypes.string,
+  value: PropTypes.shape({
+    value: PropTypes.string.isRequired,
+    label: PropTypes.node.isRequired,
+  }),
+  onChange: PropTypes.func,
 };
 
 CustomSelect.defaultProps = {
   className: "",
+  value: {},
+  onChange: () => {},
 };
 
 export default CustomSelect;

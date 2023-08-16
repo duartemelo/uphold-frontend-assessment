@@ -1,12 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Text from "../../../../atom/Text";
+import Flag from "../../../../atom/Flag";
 
 function Option({ imageSrc, label }) {
   return (
     <div className="rounded-full flex justify-center items-center gap-2">
-      <img src={imageSrc} alt="Flag" className="h-[20px]" />
-      <Text>{label}</Text>
+      <Flag imageSrc={imageSrc} label={label} />
     </div>
   );
 }
