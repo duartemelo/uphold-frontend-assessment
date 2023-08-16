@@ -1,19 +1,34 @@
 import React, { useState } from "react";
 import CustomSelect from "../../molecule/CustomSelect";
-import usd from "../../../assets/images/USD@3x.png";
-import eur from "../../../assets/images/EUR@3x.png";
 import Option from "../../molecule/CustomSelect/components/Option";
+import RatesContainer from "../RatesContainer";
+// import getRates from "../../../apis/sdk";
+import flags from "./getFlags";
 
-const options = [
-  {
-    value: "USD",
-    label: <Option imageSrc={usd} label="USD" />,
-  },
-  { value: "EUR", label: <Option imageSrc={eur} label="EUR" /> },
-];
+const options = Object.keys(flags).map((currency) => ({
+  value: currency,
+  label: <Option imageSrc={flags[currency]} label={currency} />,
+}));
 
 function RatesConverter() {
-  const [selectedCurrency, setSelectedCurrency] = useState(options[0]);
+  const defaultSelectedCurrency = options.find(
+    (option) => option.value === "USD"
+  );
+  const [selectedCurrency, setSelectedCurrency] = useState(
+    defaultSelectedCurrency
+  );
+
+  // const [loading, setLoading] = useState(false);
+
+  // useEffect(() => {
+  //   getRates("EUR").then((response) => {
+  //     console.log(response);
+  //   });
+  //   setLoading(true);
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 2000);
+  // }, []);
 
   const handleSelectValue = (value) => {
     setSelectedCurrency(value);
@@ -34,12 +49,7 @@ function RatesConverter() {
           onChange={handleSelectValue}
         />
       </div>
-      <div>
-        <p className="text-center mt-6 text-gray-400">
-          Enter an amount to check the rates.
-        </p>
-        <div className="h-[500px]" />
-      </div>
+      <RatesContainer />
     </>
   );
 }
