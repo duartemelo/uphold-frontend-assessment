@@ -1,5 +1,7 @@
 import React from "react";
+
 import Button from "../../atom/Button";
+
 import logo from "../../../assets/images/logo.svg";
 
 function Header() {

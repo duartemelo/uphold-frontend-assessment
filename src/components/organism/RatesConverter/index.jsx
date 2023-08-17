@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+
 import CustomSelect from "../../molecule/CustomSelect";
 import Option from "../../molecule/CustomSelect/components/Option";
 import RatesContainer from "../RatesContainer";
+
 import getRatesForAvailableCurrencies from "../../../apis/sdk";
+
 import flags from "../../../utils/getFlags";
 import formatCurrency from "../../../utils/currencyValues";
 

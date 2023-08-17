@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import { twMerge } from "tailwind-merge";
+
 import Text from "../Text";
 
 function Flag({ className, imageSrc, label }) {

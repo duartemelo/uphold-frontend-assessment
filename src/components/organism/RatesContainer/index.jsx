@@ -1,9 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import Text from "../../atom/Text";
 import Spinner from "../../atom/Spinner";
 import Currency from "../../molecule/Currency";
+
 import flags from "../../../utils/getFlags";
+
 import "./styles.css";
 
 function RatesContainer({ isLoading, hasError, rates }) {

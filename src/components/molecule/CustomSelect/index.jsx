@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Select from "react-select";
-import "./styles.css";
 
 import { twMerge } from "tailwind-merge";
+
+import "./styles.css";
 
 function CustomSelect({ options, className, value, onChange }) {
   return (

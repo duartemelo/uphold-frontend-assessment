@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 
 import Separator from "./components/atom/Separator";
 import Text from "./components/atom/Text";

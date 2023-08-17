@@ -1,6 +1,8 @@
 import React from "react";
+
 import Button from "../../atom/Button";
 import Text from "../../atom/Text";
+
 import logo from "../../../assets/images/logo.svg";
 import appleLogo from "../../../assets/images/appstore.svg";
 import googleLogo from "../../../assets/images/playstore.svg";
