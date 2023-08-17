@@ -21,6 +21,7 @@ function RatesConverter() {
 
   const [inputValue, setInputValue] = useState("");
   const [debouncedValue, setDebouncedValue] = useState("");
+  const [ratesError, setRatesError] = useState(false);
   const [rates, setRates] = useState([]);
   const [shownRates, setShownRates] = useState([]);
   const [ratesLoading, setRatesLoading] = useState(false);
@@ -28,12 +29,15 @@ function RatesConverter() {
   let debounceTimer;
 
   useEffect(() => {
+    setRatesError(false);
     setRatesLoading(true);
     getRatesForAvailableCurrencies(selectedCurrency.value, Object.keys(flags))
       .then((response) => {
         setRates(response);
       })
-      .catch(() => {})
+      .catch(() => {
+        setRatesError(true);
+      })
       .finally(() => {
         setRatesLoading(false);
       });
@@ -80,7 +84,11 @@ function RatesConverter() {
           onChange={handleSelectCurrency}
         />
       </div>
-      <RatesContainer isLoading={ratesLoading} rates={shownRates} />
+      <RatesContainer
+        isLoading={ratesLoading}
+        hasError={ratesError}
+        rates={shownRates}
+      />
     </>
   );
 }

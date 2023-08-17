@@ -7,7 +7,7 @@ function Currency({ value, flagImageSrc, flagLabel }) {
   return (
     <div className="flex w-full justify-between mx-auto mt-4">
       <Text as="h3" className="font-bold text-gray-700">
-        {value}
+        {value.toString()}
       </Text>
       <Flag imageSrc={flagImageSrc} label={flagLabel} />
     </div>
