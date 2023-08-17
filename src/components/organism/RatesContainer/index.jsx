@@ -7,7 +7,7 @@ import "./styles.css";
 
 function RatesContainer({ isLoading, rates }) {
   return (
-    <div className="flex flex-col min-h-[500px] items-center">
+    <div className="flex flex-col min-h-[650px] items-center">
       {isLoading && <Spinner className="mt-8 w-10 h-10" />}
 
       {!isLoading && rates.length === 0 && (
